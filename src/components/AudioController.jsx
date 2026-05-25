@@ -6,7 +6,7 @@ function AudioController() {
   const [started, setStarted] = useState(false)
 
   useEffect(() => {
-    const audio = new Audio('/audio/mitsuha.mp3')
+    const audio = new Audio('/every-moment/audio/mitsuha.mp3')
     audio.loop = true
     audio.volume = 0.4
     audioRef.current = audio
@@ -17,8 +17,14 @@ function AudioController() {
   }, [])
 
   const handleStart = () => {
-    audioRef.current.play().catch(err => console.log('Autoplay bloqueado:', err))
-    setStarted(true)
+    const playPromise = audioRef.current.play()
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => setStarted(true))
+        .catch(() => setStarted(true))
+    } else {
+      setStarted(true)
+    }
   }
 
   const toggleMute = () => {
@@ -30,10 +36,11 @@ function AudioController() {
     <>
       {!started && (
         <div
+          onClick={handleStart}
           style={{
             position: 'fixed',
             inset: 0,
-            background: '#0a1128ee',
+            background: '#0a1128f0',
             zIndex: 9999,
             display: 'flex',
             flexDirection: 'column',
@@ -41,7 +48,6 @@ function AudioController() {
             justifyContent: 'center',
             cursor: 'pointer',
           }}
-          onClick={handleStart}
         >
           <p style={{
             fontSize: 'clamp(1.2rem, 3vw, 2rem)',
@@ -55,15 +61,22 @@ function AudioController() {
             Un universo te espera...
           </p>
 
-          <span style={{
-            fontSize: '5rem',
-            animation: 'pulse 2s infinite',
-            filter: 'drop-shadow(0 0 20px #4a9eff)',
-            lineHeight: 1,
-            cursor: 'pointer',
-          }}>
-            ⭐
-          </span>
+         <div style={{
+  width: '180px',
+  height: '180px',
+  borderRadius: '50%',
+  overflow: 'hidden',
+  border: '3px solid #4a9eff',
+  boxShadow: '0 0 30px #4a9eff88',
+  animation: 'pulse 2s infinite',
+  cursor: 'pointer',
+}}>
+  <img
+    src="/every-moment/photo.jpg"
+    alt="nosotros"
+    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+  />
+</div>
 
           <p style={{
             marginTop: '1.5rem',
@@ -71,9 +84,18 @@ function AudioController() {
             fontStyle: 'italic',
             fontFamily: 'Times New Roman, serif',
             fontSize: '1rem',
-            opacity: 0.8,
           }}>
             Toca la estrella para comenzar
+          </p>
+
+          <p style={{
+            marginTop: '0.8rem',
+            color: '#ffffff44',
+            fontStyle: 'italic',
+            fontFamily: 'Times New Roman, serif',
+            fontSize: '0.8rem',
+          }}>
+            (toca en cualquier parte de la pantalla)
           </p>
 
           <style>{`
