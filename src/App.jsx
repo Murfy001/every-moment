@@ -7,9 +7,9 @@ import AddCardModal from './components/AddCardModal'
 import AudioController from './components/AudioController'
 
 function App() {
-  const [cards, setCards] = useState(() => {
-  const saved = localStorage.getItem('every-moment-cards')
-  return saved ? JSON.parse(saved) : initialCards
+ const [cards, setCards] = useState(() => {
+  localStorage.removeItem('every-moment-cards')
+  return initialCards
 })
   const [selectedCard, setSelectedCard] = useState(null)
   const [showAddModal, setShowAddModal] = useState(false)
