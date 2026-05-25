@@ -61,15 +61,22 @@ function AudioController() {
             Un universo te espera...
           </p>
 
-          <span style={{
-            fontSize: '5rem',
-            lineHeight: 1,
-            filter: 'drop-shadow(0 0 20px #4a9eff)',
-            animation: 'pulse 2s infinite',
-          }}>
-            ⭐
-          </span>
-
+        <div style={{
+  width: '180px',
+  height: '180px',
+  borderRadius: '50%',
+  overflow: 'hidden',
+  border: '3px solid #4a9eff',
+  boxShadow: '0 0 30px #4a9eff88',
+  animation: 'pulse 2s infinite',
+  cursor: 'pointer',
+}}>
+  <img
+    src="/every-moment/photo.jpg"
+    alt="nosotros"
+    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+  />
+</div>
           <p style={{
             marginTop: '1.5rem',
             color: '#4a9eff',
