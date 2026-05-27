@@ -120,14 +120,16 @@ function AddCardModal({ onClose, onSave }) {
         <label style={labelStyle}>
           Decoración
           <select
-            value={form.decoration}
-            onChange={e => setForm(f => ({ ...f, decoration: e.target.value }))}
-            style={inputStyle}
-          >
-            <option value="stars">✨ Estrellas</option>
-            <option value="plants">🌿 Plantas</option>
-            <option value="mixed">💫 Mixta</option>
-          </select>
+  value={form.decoration}
+  onChange={e => setForm(f => ({ ...f, decoration: e.target.value }))}
+  style={inputStyle}
+>
+  <option value="stars">✨ Estrellas</option>
+  <option value="flowers">🌸 Flores y Gerberas</option>
+  <option value="tulips">🌷 Tulipanes</option>
+  <option value="nature">🦋 Naturaleza y Mariposas</option>
+  <option value="galaxy">🌌 Galaxia</option>
+</select>
         </label>
 
         <label style={labelStyle}>
