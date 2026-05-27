@@ -2,14 +2,12 @@ import { useState, useEffect, useRef } from 'react'
 
 const playlist = [
   { title: 'Theme of Mitsuha', file: '/every-moment/audio/mitsuha.mp3' },
-  { title: 'Merry-Go-Round of Life from Howls Moving Castle', file: '/every-moment/audio/Merry-Go-Round of Life from Howls Moving Castle.mp3' },
-  { title: 'Rikai to aijo to yasashi manazashi', file: '/every-moment/audio/Rikai to aijo to yasashi manazashi.mp3' },
-  { title: 'inv(l.i) A Silent Voice soundtrack', file: '/every-moment/audio/inv(l.i) A Silent Voice soundtrack.mp3' },
-  { title: 'roh A Silent Voice soundtrack', file: '/every-moment/audio/roh A Silent Voice soundtrack.mp3' },
-  { title: 'lvs A Silent Voice soundtrack', file: '/every-moment/audio/lvs A Silent Voice soundtrack.mp3' },
-  { title: 'rev A Silent Voice soundtrack', file: '/every-moment/audio/rev A Silent Voice soundtrack.mp3' },
-  { title: 'lvs(var)  A Silent Voice soundtrack', file: '/every-moment/audio/lvs(var)  A Silent Voice soundtrack.mp3' },
-  { title: 'lit A Silent Voice soundtrack', file: '/every-moment/audio/lit A Silent Voice soundtrack.mp3' },
+  { title: 'Merry Go Round of Life', file: '/every-moment/audio/Merry-Go-Round of Life from Howls Moving Castle.mp3' },
+  { title: 'Rikai to Aijo', file: '/every-moment/audio/Rikai to aijo to yasashi manazashi.mp3' },
+  { title: 'inv — A Silent Voice', file: '/every-moment/audio/inv(l.i) A Silent Voice soundtrack.mp3' },
+  { title: 'roh — A Silent Voice', file: '/every-moment/audio/roh A Silent Voice soundtrack.mp3' },
+  { title: 'rev — A Silent Voice', file: '/every-moment/audio/rev A Silent Voice soundtrack.mp3' },
+  { title: 'lvs var — A Silent Voice', file: '/every-moment/audio/Ivs(var) A Silent Voice soundtrack.mp3' },
 ]
 
 function AudioController() {
