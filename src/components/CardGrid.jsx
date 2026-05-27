@@ -10,16 +10,28 @@ function CardGrid({ cards, onSelectCard, onAddCard }) {
       zIndex: 1,
     }}>
       <h2 style={{
-        textAlign: 'center',
-        fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
-        fontStyle: 'italic',
-        fontFamily: 'Times New Roman, serif',
-        color: '#a78bfa',
-        marginBottom: '1rem',
-        textShadow: '0 0 20px #a78bfa55',
-      }}>
-        ✨ Tus Cartas Estelares ✨
-      </h2>
+  textAlign: 'center',
+  fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+  fontStyle: 'italic',
+  fontFamily: 'Times New Roman, serif',
+  background: 'linear-gradient(135deg, #f9a8d4, #a78bfa, #f9a8d4)',
+  backgroundSize: '200% 200%',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  marginBottom: '1rem',
+  textShadow: 'none',
+  animation: 'gradientShift 4s ease infinite',
+}}>
+  💗 Cada día de mi vida quiero escribirlo contigo 💗
+</h2>
+
+<style>{`
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+`}</style>
       <p style={{
         textAlign: 'center',
         color: '#c8d8f088',
