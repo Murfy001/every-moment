@@ -1,3 +1,5 @@
+import LottieDecor from './LottieDecor' // ← Añadir esta importación
+
 const themes = {
   stars: {
     border: '#a78bfa',
@@ -122,6 +124,39 @@ const themes = {
   },
 }
 
+const lottieMap = {
+  stars: {
+    tl: '/every-moment/animations/estrellas.json',
+    tr: '/every-moment/animations/luna.json',
+    bl: '/every-moment/animations/Destellos.json',
+    br: '/every-moment/animations/estrellas.json',
+  },
+  flowers: {
+    tl: '/every-moment/animations/gerbera.json',
+    tr: '/every-moment/animations/rosa.json',
+    bl: '/every-moment/animations/petalos.json',
+    br: '/every-moment/animations/gerbera.json',
+  },
+  nature: {
+    tl: '/every-moment/animations/mariposa.json',
+    tr: '/every-moment/animations/hojas.json',
+    bl: '/every-moment/animations/hojas.json',
+    br: '/every-moment/animations/mariposa.json',
+  },
+  galaxy: {
+    tl: '/every-moment/animations/estrellas.json',
+    tr: '/every-moment/animations/luna.json',
+    bl: '/every-moment/animations/Destellos.json',
+    br: '/every-moment/animations/estrellas.json',
+  },
+  tulips: {
+    tl: '/every-moment/animations/tulipan.json',
+    tr: '/every-moment/animations/petalos.json',
+    bl: '/every-moment/animations/tulipan.json',
+    br: '/every-moment/animations/rosa.json',
+  },
+}
+
 function CardPreview({ card, onClick }) {
   const theme = themes[card.decoration] || themes.stars
 
@@ -154,6 +189,24 @@ function CardPreview({ card, onClick }) {
         e.currentTarget.style.border = `2px solid ${theme.border}44`
       }}
     >
+      {/* Animaciones Lottie en esquinas */}
+      <LottieDecor
+        src={lottieMap[card.decoration]?.tl || lottieMap.stars.tl}
+        style={{ position: 'absolute', top: -10, left: -10, width: 90, height: 90, zIndex: 2 }}
+      />
+      <LottieDecor
+        src={lottieMap[card.decoration]?.tr || lottieMap.stars.tr}
+        style={{ position: 'absolute', top: -10, right: -10, width: 90, height: 90, zIndex: 2, transform: 'scaleX(-1)' }}
+      />
+      <LottieDecor
+        src={lottieMap[card.decoration]?.bl || lottieMap.stars.bl}
+        style={{ position: 'absolute', bottom: -10, left: -10, width: 90, height: 90, zIndex: 2, transform: 'scaleY(-1)' }}
+      />
+      <LottieDecor
+        src={lottieMap[card.decoration]?.br || lottieMap.stars.br}
+        style={{ position: 'absolute', bottom: -10, right: -10, width: 90, height: 90, zIndex: 2, transform: 'scale(-1)' }}
+      />
+
       {/* Contorno decorativo SVG */}
       {theme.decoration()}
 
