@@ -12,6 +12,8 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@supabase/storage-js": "^2.106.2",
+    "@supabase/supabase-js": "^2.106.2",
     "html-to-image": "^1.11.11",
     "lottie-react": "^2.4.1",
     "react": "^19.0.0",

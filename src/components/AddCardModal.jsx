@@ -26,26 +26,34 @@ function AddCardModal({ onClose, onSave }) {
   }
 
   const handleSubmit = () => {
-    if (!form.title.trim() || !form.message.trim()) {
-      alert('Por favor escribe un título y un mensaje 💌')
-      return
-    }
-    onSave(form)
+  if (!form.title.trim()) {
+    alert('Por favor escribe un título 💌')
+    return
   }
-
-  const inputStyle = {
-    width: '100%',
-    background: '#ffffff11',
-    border: '1px solid #4a9eff44',
-    borderRadius: '10px',
-    padding: '0.8rem 1rem',
-    color: '#ffffff',
-    fontFamily: 'Times New Roman, serif',
-    fontStyle: 'italic',
-    fontSize: '1rem',
-    outline: 'none',
-    marginTop: '0.4rem',
+  if (!form.message.trim()) {
+    alert('Por favor escribe un mensaje 💌')
+    return
   }
+  if (!form.image) {
+    alert('Por favor agrega una imagen a la carta 🖼️')
+    return
+  }
+  onSave(form)
+}
+const inputStyle = {
+  width: '100%',
+  background: '#0d1635',
+  border: '1px solid #4a9eff44',
+  borderRadius: '10px',
+  padding: '0.8rem 1rem',
+  color: '#ffffff',
+  fontFamily: 'Times New Roman, serif',
+  fontStyle: 'italic',
+  fontSize: '1rem',
+  outline: 'none',
+  marginTop: '0.4rem',
+  colorScheme: 'dark',
+}
 
   const labelStyle = {
     display: 'block',
@@ -125,10 +133,14 @@ function AddCardModal({ onClose, onSave }) {
   style={inputStyle}
 >
   <option value="stars">✨ Estrellas</option>
-  <option value="flowers">🌸 Flores y Gerberas</option>
-  <option value="tulips">🌷 Tulipanes</option>
-  <option value="nature">🦋 Naturaleza y Mariposas</option>
   <option value="galaxy">🌌 Galaxia</option>
+  <option value="tulips">🌷 Tulipanes</option>
+  <option value="nature">🦋 Mariposas con Hojas Verdes</option>
+  <option value="petalos">🌸 Pétalos cayendo</option>
+  <option value="hojas">🍃 Hojas cayendo</option>
+  <option value="destellos">💫 Destellos (pantalla completa)</option>
+  <option value="ramas">🌿 Ramas Rosas (contorno)</option>
+  <option value="ramasFlores">🌹 Ramas con Flores (contorno)</option>
 </select>
         </label>
 
@@ -146,14 +158,14 @@ function AddCardModal({ onClose, onSave }) {
         </label>
 
         <label style={labelStyle}>
-          Imagen (opcional)
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImage}
-            style={{ ...inputStyle, padding: '0.5rem' }}
-          />
-        </label>
+  Imagen <span style={{color:'#ff4a4a'}}>* obligatoria</span>
+  <input
+    type="file"
+    accept="image/*"
+    onChange={handleImage}
+    style={{ ...inputStyle, padding: '0.5rem' }}
+  />
+</label>
 
         {form.image && (
           <div style={{ textAlign: 'center', marginBottom: '1.2rem' }}>
