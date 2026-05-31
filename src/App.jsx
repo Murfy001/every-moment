@@ -17,15 +17,42 @@ function App() {
 
   // Verificar sesión
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-      setLoadingAuth(false)
-    })
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-    return () => subscription.unsubscribe()
-  }, [])
+  if (!session) return
+
+  // Cargar cartas iniciales
+  const fetchCards = async () => {
+    const { data, error } = await supabase
+      .from('cards')
+      .select('*')
+      .order('created_at', { ascending: true })
+    if (!error) setCards(data.length > 0 ? data : initialCards)
+  }
+  fetchCards()
+
+  // Escuchar cambios en tiempo real
+  const channel = supabase
+    .channel('cards-changes')
+    .on(
+      'postgres_changes',
+      { event: '*', schema: 'public', table: 'cards' },
+      (payload) => {
+        if (payload.eventType === 'INSERT') {
+          setCards(prev => [...prev, payload.new])
+        }
+        if (payload.eventType === 'DELETE') {
+          setCards(prev => prev.filter(c => c.id !== payload.old.id))
+        }
+        if (payload.eventType === 'UPDATE') {
+          setCards(prev => prev.map(c => c.id === payload.new.id ? payload.new : c))
+        }
+      }
+    )
+    .subscribe()
+
+  return () => {
+    supabase.removeChannel(channel)
+  }
+}, [session])
 
   // Cargar cartas de Supabase
   useEffect(() => {
